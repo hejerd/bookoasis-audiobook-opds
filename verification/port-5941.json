@@ -1,0 +1,13 @@
+{
+  "plugin_version": "0.4.2",
+  "new_install_default_port": 5941,
+  "previous_default_port": 5931,
+  "saved_port_preserved": true,
+  "explicit_port_override_supported": true,
+  "checks": {
+    "existing_lifecycle_and_loader_tests_passed": 5,
+    "seconds": 23.51
+  },
+  "scope": "Local isolated tests and configuration smoke checks. Production server was not changed.",
+  "apk": "Existing Readest BookOasis b3 APK remains compatible; users edit the catalog URL or proxy target."
+}

@@ -30,12 +30,12 @@
 
 | 파일 | 설치할 곳·용도 |
 | --- | --- |
-| [audiobook_opds-0.4.1.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/audiobook_opds-0.4.1.zip) | BookOasis 서버용 플러그인 |
+| [audiobook_opds-0.4.2.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/audiobook_opds-0.4.2.zip) | BookOasis 서버용 플러그인 |
 | [Readest BookOasis APK](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-arm64.apk) | Android 휴대폰·태블릿에 설치 |
 | [앱 전체 수정 소스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-source.zip) | 개발·수정용이며 앱 설치에는 필요 없음 |
-| [SHA256SUMS.txt](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/SHA256SUMS.txt) | 다운로드 파일 확인용 |
+| [플러그인 SHA256](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/SHA256SUMS.txt) | 플러그인 ZIP 확인용 |
 
-플러그인게시판을 사용한다면 **아래 Git URL로 서버에 설치하고 APK만 받으면 됩니다.** ZIP은 수동 설치용입니다. 이 버전은 사전 공개 버전입니다. [릴리스 보기](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.1-b3)
+플러그인게시판을 사용한다면 **아래 Git URL로 서버에 설치하고 APK만 받으면 됩니다.** ZIP은 수동 설치용입니다. 이 버전은 사전 공개 버전입니다. [플러그인 0.4.2 릴리스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.2)
 
 ## 1. 서버에 플러그인 설치
 
@@ -54,7 +54,7 @@
 
 ### ZIP으로 수동 설치하는 경우
 
-1. **[플러그인 ZIP 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/audiobook_opds-0.4.1.zip)** 후 압축을 풉니다.
+1. **[플러그인 ZIP 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/audiobook_opds-0.4.2.zip)** 후 압축을 풉니다.
 2. 압축 안의 `plugins/metadata/audiobook_opds` 폴더를 서버의 BookOasis 플러그인 폴더에 복사합니다.
 3. 최종 파일 위치가 아래와 같으면 됩니다. `audiobook_opds` 폴더가 두 번 중첩되지 않도록 확인하세요.
 
@@ -71,10 +71,10 @@ Docker를 사용한다면 컨테이너의 `/app/plugins`에 연결된 **서버 �
 
 ### Docker 포트 추가
 
-이 플러그인은 OPDS 연결에 **5931 포트**를 사용합니다. 기존 BookOasis 웹 화면 포트와 함께 사용할 수 있도록 `docker-compose.yml`의 BookOasis 서비스 `ports` 목록에 다음 한 줄을 추가합니다.
+이 플러그인은 OPDS 연결에 **5941 포트**를 사용합니다. 기존 BookOasis 웹 화면 포트와 함께 사용할 수 있도록 `docker-compose.yml`의 BookOasis 서비스 `ports` 목록에 다음 한 줄을 추가합니다.
 
 ```yaml
-- "5931:5931"
+- "5941:5941"
 ```
 
 기존 포트·볼륨·환경 변수는 그대로 두고, Compose 파일이 있는 폴더에서 다음을 실행합니다. 예시 서비스 이름은 `bookoasis`입니다.
@@ -83,7 +83,9 @@ Docker를 사용한다면 컨테이너의 `/app/plugins`에 연결된 **서버 �
 docker compose up -d bookoasis
 ```
 
-이미 `5931:5931`이 설정되어 있다면 파일 복사 후 BookOasis 컨테이너만 재시작하면 됩니다. **서버 OS를 재부팅할 필요는 없습니다.**
+이미 `5941:5941`이 설정되어 있다면 파일 복사 후 BookOasis 컨테이너만 재시작하면 됩니다. **서버 OS를 재부팅할 필요는 없습니다.**
+
+기존에 5931로 사용했다면 업데이트 후에도 저장된 값은 유지됩니다. 포트를 옮기려면 [5931에서 5941로 전환](docs/INSTALL.ko.md#기존-5931에서-5941로-옮기기)을 따라 설정과 매핑을 함께 바꿉니다.
 
 ## 2. BookOasis에서 서비스 켜기
 
@@ -96,12 +98,12 @@ docker compose up -d bookoasis
 | 설정 항목 | 처음 설치할 때 입력할 값 |
 | --- | --- |
 | 수신 주소 | `0.0.0.0` |
-| 컨테이너 내부 포트 | `5931` |
+| 컨테이너 내부 포트 | `5941` |
 | 앱에서 접속할 기본 URL | 비워두기 |
 | 페이지당 목록 항목 수 | `30` |
 | 카탈로그 제목 | `BookOasis Audiobooks` 또는 원하는 이름 |
 
-휴대폰 브라우저에서 `http://서버주소:5931/opds`를 열어 보세요. BookOasis 계정으로 인증한 뒤 XML 형식의 목록이 보이면 서버 준비가 끝난 것입니다.
+휴대폰 브라우저에서 `http://서버주소:5941/opds`를 열어 보세요. BookOasis 계정으로 인증한 뒤 XML 형식의 목록이 보이면 서버 준비가 끝난 것입니다.
 
 ## 3. Android 앱 설치
 
@@ -119,11 +121,11 @@ docker compose up -d bookoasis
 | 앱 입력 항목 | 입력 예시 |
 | --- | --- |
 | 카탈로그 이름 | `내 BookOasis 오디오북` |
-| OPDS URL | `http://서버주소:5931/opds` |
+| OPDS URL | `http://서버주소:5941/opds` |
 | 사용자 이름 | BookOasis에 로그인할 때 쓰는 사용자 이름 |
 | 비밀번호 | 해당 BookOasis 계정의 비밀번호 |
 
-예를 들어 집 안 서버 주소가 `192.168.1.10`이면 `http://192.168.1.10:5931/opds`를 입력합니다. 휴대폰과 서버가 같은 네트워크에 있어야 이 주소로 접속할 수 있습니다.
+예를 들어 집 안 서버 주소가 `192.168.1.10`이면 `http://192.168.1.10:5941/opds`를 입력합니다. 휴대폰과 서버가 같은 네트워크에 있어야 이 주소로 접속할 수 있습니다.
 
 앱의 사용자 이름·비밀번호 칸에 ‘선택 사항’이라고 표시되어도 **이 플러그인에 연결할 때는 둘 다 입력해야 합니다.** OPDS 연결에 Readest 계정이나 Google 로그인은 필요하지 않습니다.
 
@@ -139,7 +141,7 @@ docker compose up -d bookoasis
 
 ## 집 밖에서도 접속하려면
 
-휴대폰에서 접근할 수 있는 외부 주소가 필요합니다. HTTPS 리버스 프록시를 사용한다면 OPDS용 도메인을 서버의 **5931 포트**로 연결하고, 앱에는 `https://audio.example.com/opds` 형태로 등록합니다.
+휴대폰에서 접근할 수 있는 외부 주소가 필요합니다. HTTPS 리버스 프록시를 사용한다면 OPDS용 도메인을 서버의 **5941 포트**로 연결하고, 앱에는 `https://audio.example.com/opds` 형태로 등록합니다.
 
 이때 플러그인의 **앱에서 접속할 기본 URL**에는 `https://audio.example.com`을 입력합니다. 이 설정에는 끝에 `/opds`를 붙이지 않습니다. 기존 BookOasis 웹 화면만 외부에 연결되어 있다면 OPDS용 연결도 추가해야 합니다. [주소와 포트 설정 자세히 보기](docs/INSTALL.ko.md#외부에서-접속하기)
 
@@ -148,7 +150,7 @@ docker compose up -d bookoasis
 | 증상 | 확인할 것 |
 | --- | --- |
 | 오디오북 OPDS가 설정에 안 보임 | 파일 위치가 `plugins/metadata/audiobook_opds/`인지 확인하고 BookOasis 재시작 |
-| 주소에 연결할 수 없음 | `5931:5931`, OPDS 서비스 사용 체크, 서버 주소와 방화벽 확인 |
+| 주소에 연결할 수 없음 | `5941:5941`, OPDS 서비스 사용 체크, 서버 주소와 방화벽 확인 |
 | 인증 실패 | BookOasis 계정·비밀번호 확인. 기본 비밀번호 상태라면 BookOasis에서 변경 후 사용 |
 | 카테고리가 비어 있음 | BookOasis의 오디오북 등록 상태와 해당 계정의 라이브러리 접근 권한 확인 |
 | 책은 나오는데 재생 안 됨 | 서버에서 원본 파일을 읽을 수 있는지 확인하고 Readest BookOasis 앱으로 재생 |

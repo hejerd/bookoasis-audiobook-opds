@@ -40,7 +40,7 @@ ET.register_namespace("", ATOM)
 ET.register_namespace("opds", OPDS)
 ET.register_namespace("dcterms", DC)
 
-DEFAULTS = {"service_enabled": False, "bind_host": "0.0.0.0", "port": 5931,
+DEFAULTS = {"service_enabled": False, "bind_host": "0.0.0.0", "port": 5941,
             "public_base_url": "", "page_size": 30, "title": "BookOasis Audiobooks"}
 # Only these fixed SQL fragments can reach ORDER BY; query input is never SQL.
 SORT_OPTIONS = OrderedDict([
@@ -731,7 +731,7 @@ class AudiobookOpdsMetadataProvider(BaseMetadataProvider):
          "description": "켜면 별도 포트에서 기존 BookOasis 계정으로 접속합니다."},
         {"key": "bind_host", "label": "수신 주소", "type": "text", "default": "0.0.0.0",
          "description": "Docker 포트 게시: 0.0.0.0 / 같은 컨테이너 프록시 전용: 127.0.0.1"},
-        {"key": "port", "label": "컨테이너 내부 포트", "type": "number", "default": 5931},
+        {"key": "port", "label": "컨테이너 내부 포트", "type": "number", "default": 5941},
         {"key": "public_base_url", "label": "앱에서 접속할 기본 URL", "type": "text", "default": "",
          "description": "예: https://audio.example.org (끝에 /opds를 붙이지 마세요). 비우면 요청 주소 사용."},
         {"key": "page_size", "label": "페이지당 목록 항목 수", "type": "number", "default": 30},
