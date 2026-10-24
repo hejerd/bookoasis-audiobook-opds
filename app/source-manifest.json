@@ -1,13 +1,13 @@
 {
   "source_zip": "Readest-BookOasis-0.12.16-b3-source.zip",
-  "source_bytes": 123258516,
-  "source_sha256": "999c4c9a24e0f7a4516de7c6d65f5860d3dfb6956327f0a52704e5c47f2b4f41",
+  "source_bytes": 123262537,
+  "source_sha256": "f450fac54bb1b57aa2e7f0ffe53fc47b7c1ee86c5857becf14f30bc147eaea80",
   "version": "0.12.16+bookoasis.3",
   "upstream_commit": "27694ba28b590cfb6c4c88092b73d31ed1338de9",
   "overrides": {
     "readest/Cargo.lock": "d647eebd1234c0fd3415fda91ffba1fc502cb6c85b37cd73e8dac65a1f183a92",
     "readest/Cargo.toml": "8aaae483461e7368cc7812dcee43c72c1e26f3f7e8b2cd71722a811364ebb923",
-    "readest/apps/readest-app/next.config.mjs": "1721267c6fd33e6573f52fb8fbf3a381ae2e36c210cf7df535e2f0361c6d2ff3",
+    "readest/apps/readest-app/next.config.mjs": "d965065a03ed63d9071512dde03fddbd2fa22a2f9618759bb2ad5c18622222e0",
     "readest/apps/readest-app/public/locales/ko/translation.json": "28b3ef029aef8b66920524410e6c342498db02a6343c480ead881345a4f83efd",
     "readest/apps/readest-app/src-tauri/gen/android/app/build.gradle.kts": "0a25759bb65390b6aeb6917789fb13324bf790c921b79a2da0567cc962f27275",
     "readest/apps/readest-app/src-tauri/gen/android/app/src/main/AndroidManifest.xml": "6fdcce82ad5ba3f3b0889cd4635e3d010c9ab62bcf5110caee3b49854e6de3f4",
@@ -34,11 +34,14 @@
     "readest/apps/readest-app/src/__tests__/services/opds/playlist-controller.test.ts": "5c574c56afeb256b0d8d5ab14f3262ea67a16995c7bbb2ae4d3054f6110c1358",
     "readest/apps/readest-app/src-tauri/gen/android/app/tauri.properties": "adadd2b30debfe46b7b35ad85b9515fd51d8eb01e7b83d1a0fd1ed511af13d03",
     "readest/bookoasis/tauri.bookoasis.conf.json": "b4e079b0105838eef4bd3d3760a7d97538579d3d39328424c08f7719a8e81a4a",
-    "readest/bookoasis/INSTALL.ko.md": "3a45349815947b852a7f87bc2ac8d0885f339480affe2306f5420c770533b084",
-    "readest/bookoasis/BUILD-b3.ko.md": "6a61de52d02a05dad04f2a4b279b0cb0dfb8bcf7163ef4cc3a2913331a20ad12",
-    "readest/bookoasis/VALIDATION.ko.md": "3b8a86264bccf093db7933fe2767c9d6112a5f0261c255c84d10d00fcc220417",
+    "readest/bookoasis/INSTALL.ko.md": "bc1a3e0300ee6d0167be395cc6a5afc60aa89c2090d0245b8127a7dd0a847943",
+    "readest/bookoasis/BUILD-b3.ko.md": "a0e478f85f2e9c7d01fa7de4de1b77f528d900966cfb54fa86c80f17d28b6af3",
+    "readest/bookoasis/VALIDATION.ko.md": "2a15677962bb5bcea07d6785707c118ecf97b048c8a2f2da672984609d6395ea",
     "readest/bookoasis/BUILD-b1-b2-reference.ko.md": "f9f205218d6064fd2854df8787e31ef04bfd8e45b84e6d75b0b9cfef82796106",
-    "readest/bookoasis/BUILD.ko.md": "6a61de52d02a05dad04f2a4b279b0cb0dfb8bcf7163ef4cc3a2913331a20ad12",
-    "readest/bookoasis/readest-playlist-b3.patch": "43dc9ce05779ad2538d42554ff777cf95399422b548ffaa7dcb2f2d75ef19b9b"
+    "readest/bookoasis/BUILD.ko.md": "a0e478f85f2e9c7d01fa7de4de1b77f528d900966cfb54fa86c80f17d28b6af3",
+    "readest/bookoasis/readest-playlist-b3.patch": "43dc9ce05779ad2538d42554ff777cf95399422b548ffaa7dcb2f2d75ef19b9b",
+    "readest/bookoasis/set-path-remap.ps1": "91b642134e401306b6695839f910af80e1cda5ee9c1384d530e931036dfbbac8",
+    "readest/bookoasis/remap-client-build-paths.mjs": "f504c92e27e779892824338787c9864a84bdfd07d7ed5027b366363b25dba9cb",
+    "readest/bookoasis/remap-client-build-paths.test.mjs": "df7363b92871a9c5585a4233ae9cf07a33776ec3ab6d7207ce5643da0e562cd7"
   }
 }

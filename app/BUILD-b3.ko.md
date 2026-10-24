@@ -18,3 +18,23 @@ Node 22.23.4, JDK 17, NDK 28.2.13676358, Rust 1.99.1을 사용했다. Node 빌�
 Windows에서 Tauri가 Rust 빌드 완료 후 jniLibs 심볼릭 링크 생성만 실패하는 경우, 기존 BUILD.ko.md에 기록한 성공한 .so 복사 후 Gradle assembleUniversalRelease 절차를 쓴다. 새 프런트엔드를 포함한 Rust 라이브러리를 다시 컴파일해야 한다. b2의 .so를 재사용하면 새 화면이 포함되지 않는다.
 
 버전 이름 0.12.16+bookoasis.3, Android versionCode 12018. 자신의 키로 서명한다. 원래 b1/b2의 서명 키는 소스 ZIP에 포함하지 않는다.
+
+## 공개 APK의 빌드 경로 정리
+
+공개 APK는 Android 네이티브 라이브러리를 다시 컴파일하여 개인 PC의 소스·Cargo·Rustup 경로를 일반 빌드 경로로 치환했습니다. 실행 코드와 앱 ID·버전은 유지하고 이전 BookOasis 앱과 같은 인증서로 서명했습니다.
+
+Windows의 Android 빌드 환경을 준비한 뒤 저장소 루트에서 다음을 먼저 실행하고 위 Android 빌드를 진행합니다. 스크립트는 소스 ZIP의 `bookoasis/`에 포함되어 있으며 실제 사용자 경로는 배포하지 않습니다.
+
+```powershell
+. ./bookoasis/set-path-remap.ps1
+```
+
+이 스크립트는 Rust의 `--remap-path-prefix`를 `CARGO_ENCODED_RUSTFLAGS`에 추가합니다. 컴파일러가 포함하는 소스 위치를 바꾸므로 의존성도 다시 컴파일됩니다. 패키징 후 APK 내부의 모든 파일을 풀어 개인 PC 경로·서버 식별자·개인키·토큰 패턴을 다시 검사합니다.
+
+웹 화면 번들에 Webpack의 `import.meta.url`이 빌드 PC의 파일 URL로 남는 경우도 정리합니다. `next.config.mjs`가 `bookoasis/remap-client-build-paths.mjs`를 사용해 JavaScript 자산 안의 저장소 루트만 `file:///build/readest/`로 바꾸며, 상대 파일 경로와 일반 네트워크 URL은 유지합니다. Webpack의 내용 해시 계산 전에 적용합니다.
+
+```sh
+node --test bookoasis/remap-client-build-paths.test.mjs
+```
+
+공개 재빌드는 Rust의 소스 위치와 웹 화면의 파일 URL 모두를 검사했습니다. 오디오북 재생·인증·동기화 로직은 이 정리에서 변경하지 않았습니다.

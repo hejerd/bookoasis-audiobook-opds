@@ -11,12 +11,16 @@
 
 빌드·APK 서명·정렬·대응 소스 검사는 패키지 생성 후 validation의 JSON/로그에 기록한다.
 
-## 최종 빌드와 APK
+## 공개 APK 재빌드
 
-- 최종 프런트엔드 프로덕션 빌드 성공(Next.js 16.3.8); 새 화면을 포함한 Android Rust 라이브러리 release 빌드 성공. 네이티브 단계 576.1초.
-- Windows 심볼릭 링크 생성 제한으로 Tauri CLI는 완성된 .so의 jniLibs 링크 단계에서 종료됐다. 완성 시각과 로그를 검사한 새 .so를 복사하고 SHA256 일치를 확인한 뒤 Gradle APK 조립에 사용했다. CLI 전체 성공으로 기록하지 않았다.
-- Gradle assembleUniversalRelease 성공(632개 작업, 2분 7초).
-- apksigner 서명 검증 및 16KB ZIP 정렬 검사 통과. 앱 ID com.bilingify.readest.bookoasis, 버전 0.12.16+bookoasis.3, versionCode 12018, Android 최소 SDK 26, arm64-v8a.
-- 기존 b2와 동일한 서명 인증서(SHA256 f2ca656380ccc456f5c511627bc4975eb2df4e467cc24259d7e165810c30c41b) 확인.
-- 최종 APK SHA256 efbc4294bab1609174e8979c83142dc72a19d8cd29ebb2caa4395fa77896e3ef, 55,724,768바이트.
-- 소스와 APK 패키지의 추가 검사 결과는 package-check.json, source-manifest.json에 기록한다.
+- 새 프런트엔드 프로덕션 빌드와 TypeScript 검사 통과. 클라이언트 번들 경로 처리 검사 4개 통과.
+- Rust 소스 위치와 클라이언트 번들의 파일 URL에서 개인 PC 경로를 일반 빌드 경로로 치환했다.
+- 내보낸 웹 파일 665개와 APK 내부 모든 파일을 검사했다. 확인 대상 개인 PC 경로·서버 식별자·개인키·GitHub 토큰 패턴은 발견되지 않았다.
+- 새 내용 해시를 가진 웹 번들 6개가 최종 네이티브 라이브러리에 포함되는 것을 확인했다.
+- APK 조립, apksigner, 16KB ZIP 정렬 및 ELF LOAD 세그먼트 정렬 검사 통과. 기존 b3와 비교해 변경된 APK 내부 파일은 lib/arm64-v8a/libreadestlib.so 하나다.
+- 앱 ID com.bilingify.readest.bookoasis, 버전 0.12.16+bookoasis.3, versionCode 12018, 최소 SDK 26, arm64-v8a를 유지했다.
+- 기존 BookOasis 앱과 같은 인증서로 서명했다. 인증서 SHA256: f2ca656380ccc456f5c511627bc4975eb2df4e467cc24259d7e165810c30c41b.
+- 공개 APK SHA256: d6a65a0314d7b14017ea501d300100cbbe2bc82e75b002be07303d1782cf3863, 55642848바이트.
+- Android 실기 소리·백그라운드·지연 시간 검증은 이번 공개 재빌드에서 수행하지 않았다.
+
+[공개 패키지 검사 결과](../verification/publication.json) · [APK 정보](apk-manifest.json) · [대응 소스 정보](source-manifest.json)

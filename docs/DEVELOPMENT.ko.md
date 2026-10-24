@@ -6,7 +6,7 @@
 
 - 서버 플러그인: `plugins/metadata/audiobook_opds/`
 - 서버 검사와 직접 생성한 2초 샘플: `tests/`
-- 앱 전체 대응 소스: 릴리스의 `Readest-BookOasis-0.12.16-b3-source.zip` (APK와 함께 게시 예정)
+- 앱 전체 대응 소스: 릴리스의 `Readest-BookOasis-0.12.16-b3-source.zip` (APK와 함께 제공)
 - `app/readest-playlist-b3.patch`는 b2에서 b3로의 변경만 포함합니다. 전체 앱 소스는 별도 소스 ZIP을 사용합니다.
 
 ## 기준과 문서

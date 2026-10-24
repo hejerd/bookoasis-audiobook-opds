@@ -5,7 +5,7 @@
 **[앱 설치 → 서버 등록 → 책·회차 선택 → 이어듣기](INSTALL.ko.md)**
 
 - [서버에 플러그인 설치](../docs/INSTALL.ko.md)
-- [다운로드 페이지](https://github.com/hejerd/bookoasis-audiobook-opds/releases) — APK·전체 대응 소스 첨부 준비 중
+- [다운로드 페이지](https://github.com/hejerd/bookoasis-audiobook-opds/releases) — APK·전체 대응 소스
 - [개발·빌드·검증 자료](../docs/DEVELOPMENT.ko.md)
 
 Readest의 비공식 수정판입니다. 공식 앱과 별도로 설치됩니다.

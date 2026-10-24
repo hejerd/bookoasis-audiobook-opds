@@ -5,12 +5,14 @@
   "version_code": "12018",
   "min_sdk": 26,
   "previous_b1_playback_user_confirmed": true,
-  "sha256": "efbc4294bab1609174e8979c83142dc72a19d8cd29ebb2caa4395fa77896e3ef",
-  "bytes": 55724768,
+  "sha256": "d6a65a0314d7b14017ea501d300100cbbe2bc82e75b002be07303d1782cf3863",
+  "bytes": 55642848,
   "update_certificate_matches_b2": true,
   "label": "Readest BookOasis",
   "device_playback_tested": false,
-  "built_at": "2026-10-24T02:18:24.2973220Z",
+  "built_at": "2026-10-24T06:54:11.1658045Z",
   "version_name": "0.12.16+bookoasis.3",
-  "abi": "arm64-v8a"
+  "abi": "arm64-v8a",
+  "rebuilt_for_publication": true,
+  "path_remapping_enabled": true
 }

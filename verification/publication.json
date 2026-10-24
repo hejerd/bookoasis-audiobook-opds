@@ -1,0 +1,51 @@
+{
+  "frontend": {
+    "exported_frontend_files_checked": 665,
+    "private_identifier_matches": [],
+    "sanitized_javascript_assets": [
+      "_next/static/chunks/20f5ed63.2cd060eb96e65ba9.js",
+      "_next/static/chunks/3895.15b5f1e6ceabefe2.js",
+      "_next/static/chunks/4706.fb426755337ce6cc.js",
+      "_next/static/chunks/8067.b210a0b57de31e81.js",
+      "_next/static/chunks/9906.df7cd4f36010e1e0.js",
+      "_next/static/chunks/f30df540.eb04de7d251eba59.js"
+    ]
+  },
+  "bundle_path_tests_passed": 4,
+  "apk": {
+    "files": 1022,
+    "bytes": 58212957,
+    "matches": {
+      "personal_pc_paths": [],
+      "server_identifiers": [],
+      "private_keys": [],
+      "github_tokens": []
+    },
+    "elf_load_segment_alignments": [
+      16384,
+      16384,
+      16384,
+      16384
+    ],
+    "windows_home_prefixes": [],
+    "changed_entries_from_original_b3": [
+      "lib/arm64-v8a/libreadestlib.so"
+    ],
+    "removed_entries": []
+  },
+  "source": {
+    "files": 7174,
+    "bytes": 197836644,
+    "matches": {
+      "personal_pc_paths": [],
+      "server_identifiers": [],
+      "private_keys": [],
+      "github_tokens": []
+    }
+  },
+  "same_app_id_version_certificate": true,
+  "signature_and_16kb_alignment_verified": true,
+  "android_device_tested": false,
+  "code_behavior_changed": false,
+  "private_build_paths_removed": true
+}
