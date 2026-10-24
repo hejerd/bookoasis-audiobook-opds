@@ -1,0 +1,22 @@
+{
+  "description": "Original 440 Hz sine tones generated for plugin verification; no speech or copyrighted media.",
+  "duration_seconds": 2,
+  "files": {
+    "cover.jpg": {
+      "bytes": 4563,
+      "sha256": "55e2dde63ccd21d7f8ecac1472d8ce0ae37f3983d87cd466fcc2d7a45416d91f"
+    },
+    "tone.m4a": {
+      "bytes": 17595,
+      "sha256": "3c53af524809575aa14e47f87f13fc713de2800ad55ead32529d4bee9b9a19a8"
+    },
+    "tone.m4b": {
+      "bytes": 17595,
+      "sha256": "3c53af524809575aa14e47f87f13fc713de2800ad55ead32529d4bee9b9a19a8"
+    },
+    "tone.mp3": {
+      "bytes": 16552,
+      "sha256": "df3b31ea98a1067b6614fd3fd8dcb048b7f121d186ef64dc96b5f913864a17b0"
+    }
+  }
+}

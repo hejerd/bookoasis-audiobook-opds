@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "version": "0.4.1",
+  "unique_tests": 172,
+  "initial_tests_passed": 171,
+  "initial_old_navigation_contract_failed": 1,
+  "updated_acquisition_contract_rerun_passed": 1,
+  "readest_parser_passed": true,
+  "production_books_verified": 450,
+  "sort_scope_checks": 75,
+  "browser_actual_feed_view_cover_grid_verified": true,
+  "android_device_tested": false,
+  "installed_on_authorized_server": true,
+  "installed_plugin_database_comparisons": 450,
+  "installed_sort_scope_checks": 75,
+  "backup_databases_verified": 4,
+  "android_ui_tested": false,
+  "note": "Final unique results: 171 passed initially; 1 obsolete navigation contract was updated and passed on rerun. No Android device test."
+}

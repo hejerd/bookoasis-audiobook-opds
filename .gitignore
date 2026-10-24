@@ -1,0 +1,14 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.db
+*.db-wal
+*.db-shm
+.env
+.env.local
+*.jks
+*.keystore
+keystore.properties
+node_modules/
+*.apk
+*.zip

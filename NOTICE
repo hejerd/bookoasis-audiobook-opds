@@ -1,0 +1,11 @@
+audiobook_opds 0.4.1
+Prepared for BookOasis_stable dashboard 3.0.2.
+Upstream inspected: https://github.com/leeyj/BookOasis_stable
+Commit: f4f80943bc46e8b673674b88bc40fc16bfafbd98
+License: GNU Affero General Public License version 3; see LICENSE.
+
+0.4.1 advertises book listings as acquisition feeds with artwork and the
+complete ordered track links, using one page-scoped metadata query.
+The BookOasis and Readest applications are not included or modified.
+The sample audio consists of original generated sine tones; no user audio
+or production credentials are distributed.
