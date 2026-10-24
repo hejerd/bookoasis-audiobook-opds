@@ -4,8 +4,9 @@
 
 ## 소스 위치
 
-- 서버 플러그인: `plugins/metadata/audiobook_opds/`
-- 서버 검사와 직접 생성한 2초 샘플: `tests/`
+- 서버 플러그인 소스: 저장소 최상위의 `audiobook_opds.py`, `__init__.py`, `VERSION`
+- 서버 설치 위치: `plugins/metadata/audiobook_opds/` (플러그인게시판이 클래스 ID로 폴더를 결정)
+- 서버 검사와 직접 생성한 2초 샘플: `verification/plugin-tests.zip`
 - 앱 전체 대응 소스: 릴리스의 `Readest-BookOasis-0.12.16-b3-source.zip` (APK와 함께 제공)
 - `app/readest-playlist-b3.patch`는 b2에서 b3로의 변경만 포함합니다. 전체 앱 소스는 별도 소스 ZIP을 사용합니다.
 
@@ -20,14 +21,21 @@
 
 ## 플러그인 검사 실행
 
+플러그인게시판의 Git 설치는 저장소 전체를 설치 폴더에 복사합니다. BookOasis는 그 아래의 모든 Python 파일에 실행 정책을 적용하므로, 외부 ffmpeg를 사용하는 개발용 검사·샘플 생성기는 별도 ZIP으로 보관합니다. 실제 서버에서 이 ZIP을 풀거나 검사를 실행할 필요는 없습니다.
+
+개발할 때만 ZIP을 플러그인 설치 폴더 밖에 풀고 검사합니다.
+
 ```bash
-python -m pytest tests --bookoasis-source /path/to/BookOasis_stable -q
+python -m zipfile -e verification/plugin-tests.zip /tmp/bookoasis-opds-tests
+python -m pytest /tmp/bookoasis-opds-tests/tests --plugin-source /path/to/bookoasis-audiobook-opds --bookoasis-source /path/to/BookOasis_stable -q
 ```
 
 테스트 의존성은 Flask, Werkzeug, Pillow, requests, python-dotenv, mutagen, pytest, imageio-ffmpeg 및 BookOasis 실행 의존성입니다. 이 명령과 의존성 설치는 개발용이며 플러그인 사용자가 실행할 단계가 아닙니다.
 
 ## 확인한 범위
 
+- Git URL 설치 구조: 플러그인게시판 2.52.0의 실제 설치 함수를 로컬 격리 파일시스템에서 실행해 신규 설치, 기존 수동 설치 폴더 인식, 업데이트, 경고 없는 사전 검증을 확인했습니다. 저장소 이름과 설치 폴더 ID가 달라도 `audiobook_opds`를 유지합니다.
+- 구조 변경 후 회귀 검사: 172개 통과(166.07초). 실제 BookOasis 로더와 임시 HTTP 서버의 인증·Range 요청을 포함합니다. 이번 변경을 운영 서버에 설치한 결과는 아닙니다. [검사 기록](../verification/git-install.json)
 - 플러그인: 초기 171개 검사 통과 + 변경된 피드 계약 검사 1개 수정 후 재실행 통과로 고유 검사 172개 통과.
 - 실제 서버: 읽기 전용 검사로 450권의 목록·상세 회차 일치, 정렬 75개, 표지 3개, 음원 2개의 HEAD 200·Range 206 확인.
 - 앱: 관련 회귀 291개, TypeScript, 전체 lint, 프런트엔드·Android 빌드, APK 서명과 정렬 검사 통과.

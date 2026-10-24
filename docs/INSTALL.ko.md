@@ -2,11 +2,21 @@
 
 `audiobook_opds`는 기존 BookOasis 서버에 추가해 오디오북 클라이언트 앱을 연결하는 플러그인입니다. 이 안내는 BookOasis가 이미 실행 중이고 오디오북이 등록된 서버를 기준으로 합니다.
 
-설치 순서는 **파일 넣기 → Docker 포트 추가 → BookOasis 재시작 → OPDS 서비스 켜기**입니다. 이후 [Android 앱 연결](../app/INSTALL.ko.md)을 진행합니다.
+설치 순서는 **플러그인게시판에서 Git URL 설치 → Docker 포트 추가 → BookOasis 재시작 → OPDS 서비스 켜기**입니다. 이후 [Android 앱 연결](../app/INSTALL.ko.md)을 진행합니다. 플러그인게시판이 없다면 ZIP으로 수동 설치할 수 있습니다.
 
 ## 1. 플러그인 파일 넣기
 
-1. [저장소 ZIP](https://github.com/hejerd/bookoasis-audiobook-opds/archive/refs/heads/main.zip)을 다운로드해 압축을 풉니다. 릴리스의 `audiobook_opds-0.4.1.zip`이 제공되어 있다면 그 파일을 사용해도 됩니다.
+### 플러그인게시판에서 Git URL로 설치
+
+1. **플러그인게시판 → Git 저장소 URL 설치**에 `https://github.com/hejerd/bookoasis-audiobook-opds`를 입력합니다.
+2. **Git 설치**를 누릅니다. 설치된 플러그인 이름은 **오디오북 OPDS**, 폴더와 ID는 `audiobook_opds`입니다.
+3. **2. Docker 포트 5931 추가**부터 계속합니다. 설치 버튼은 Docker 포트를 변경하지 않습니다.
+
+설치 후 업데이트는 플러그인게시판에서 진행합니다. 기존에 파일을 복사해 설치했어도 클래스 ID가 같은 `audiobook_opds` 폴더를 찾아 사용합니다. 설치 이력에 다른 저장소가 같은 폴더를 사용 중이라고 나오면 먼저 주소와 폴더를 확인하세요.
+
+### ZIP으로 수동 설치
+
+1. 릴리스의 [audiobook_opds-0.4.1.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/audiobook_opds-0.4.1.zip)을 다운로드해 압축을 풉니다.
 2. 압축 안에서 `plugins/metadata/audiobook_opds` 폴더를 찾습니다.
 3. 이 `audiobook_opds` 폴더를 서버의 BookOasis 플러그인 폴더 아래 `metadata` 안에 넣습니다.
 
@@ -30,7 +40,7 @@ plugins/
         └── VERSION
 ```
 
-압축을 푼 저장소 폴더 전체를 `metadata`에 넣는 것이 아니라, 그 안의 **`audiobook_opds` 폴더 하나**를 복사합니다.
+릴리스 ZIP에서는 그 안의 **`audiobook_opds` 폴더 하나**를 복사합니다. GitHub의 **Code → Download ZIP**은 저장소 최상위에 플러그인 파일이 있는 구조입니다. 이 파일을 사용한다면 `audiobook_opds` 폴더를 직접 만들고 그 안에 `__init__.py`, `audiobook_opds.py`, `VERSION` 세 파일과 `LICENSE`를 넣으세요.
 
 ## 2. Docker 포트 5931 추가
 
@@ -106,6 +116,10 @@ BookOasis 계정의 오디오북 접근 권한과 라이브러리 접근 권한�
 기본 URL 설정에는 `/opds`를 붙이지 않고, 앱의 OPDS URL에는 붙입니다. `example.com`은 예시이므로 자신의 도메인으로 바꿉니다. 외부 접속을 위해 별도 VPN이 필수인 것은 아닙니다. 기존 BookOasis 웹 화면이 외부에서 열린다는 것만으로 OPDS의 5931 포트까지 연결되는 것은 아니므로, OPDS용 프록시 경로를 추가해야 합니다.
 
 ## 업데이트
+
+**Git URL로 설치했다면:** 플러그인게시판의 오디오북 OPDS 카드에서 **업데이트**를 누릅니다. 코드 반영 후 BookOasis 컨테이너를 재시작해 OPDS 백그라운드 서비스도 새 코드로 시작하세요. 기존 포트와 설정은 그대로 사용합니다.
+
+**ZIP으로 수동 설치했다면:**
 
 1. 기존 `audiobook_opds` 폴더를 보관해 두면 필요할 때 이전 버전으로 돌아갈 수 있습니다. 보관본은 `plugins/metadata` 밖에 둡니다.
 2. 새 버전의 `audiobook_opds` 폴더로 교체합니다.

@@ -1,0 +1,33 @@
+{
+  "upstream": "yume-script/plugin_board",
+  "upstream_version": "2.52.0",
+  "upstream_source_blob_sha": "55b70e6a1fd2951886ce720bbdd87d76fc2ea7ad",
+  "source_url": "https://github.com/hejerd/bookoasis-audiobook-opds",
+  "fresh_install": true,
+  "existing_manual_install": true,
+  "update_existing_folder": true,
+  "installed_folder": "audiobook_opds",
+  "static_validation": true,
+  "static_warnings": 0,
+  "main_module_unchanged": true,
+  "main_module_sha256": "7e3718ee6a2997f75f041595db76881ac8995cdbdc4991f33d9190a45297e90c",
+  "git_download_paths": [
+    "https://codeload.github.com/hejerd/bookoasis-audiobook-opds/zip/refs/heads/main",
+    "https://codeload.github.com/hejerd/bookoasis-audiobook-opds/zip/refs/heads/main",
+    "https://codeload.github.com/hejerd/bookoasis-audiobook-opds/zip/refs/heads/main"
+  ],
+  "limits": "Local filesystem simulation. GitHub transport and live core reload are replaced; production server untouched.",
+  "regression": {
+    "passed": 172,
+    "failed": 0,
+    "seconds": 166.07,
+    "includes": [
+      "BookOasis MetadataFactory loader",
+      "loopback HTTP authentication and Range"
+    ]
+  },
+  "test_source_archive": {
+    "path": "verification/plugin-tests.zip",
+    "sha256": "9289304e05cc44bc79dba4ef7a3f56367bd6fc4f4d0c98e5bc3ca00556e678d9"
+  }
+}

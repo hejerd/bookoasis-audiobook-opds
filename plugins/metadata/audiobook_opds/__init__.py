@@ -1,2 +1,0 @@
-from .audiobook_opds import AudiobookOpdsMetadataProvider
-

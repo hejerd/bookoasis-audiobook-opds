@@ -32,12 +32,27 @@
 | --- | --- |
 | [audiobook_opds-0.4.1.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/audiobook_opds-0.4.1.zip) | BookOasis 서버용 플러그인 |
 | [Readest BookOasis APK](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-arm64.apk) | Android 휴대폰·태블릿에 설치 |
-| [앱 전체 수정 소스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-source.zip) | 소스가 필요한 경우 |
+| [앱 전체 수정 소스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-source.zip) | 개발·수정용이며 앱 설치에는 필요 없음 |
 | [SHA256SUMS.txt](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/SHA256SUMS.txt) | 다운로드 파일 확인용 |
 
-처음 사용한다면 **플러그인 ZIP과 APK 두 파일**을 받으면 됩니다. 이 버전은 사전 공개 버전입니다. [릴리스 보기](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.1-b3)
+플러그인게시판을 사용한다면 **아래 Git URL로 서버에 설치하고 APK만 받으면 됩니다.** ZIP은 수동 설치용입니다. 이 버전은 사전 공개 버전입니다. [릴리스 보기](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.1-b3)
 
 ## 1. 서버에 플러그인 설치
+
+### 플러그인게시판에서 Git URL로 설치
+
+1. BookOasis의 **플러그인게시판 → Git 저장소 URL 설치**에 다음 주소를 붙여넣습니다.
+
+   ```text
+   https://github.com/hejerd/bookoasis-audiobook-opds
+   ```
+
+2. **Git 설치**를 누릅니다. 저장소 이름과 관계없이 플러그인은 `audiobook_opds` 폴더에 설치됩니다.
+3. 아래의 **Docker 포트 추가**와 **BookOasis에서 서비스 켜기**를 진행합니다. 플러그인게시판에서 설치해도 Docker 포트는 별도로 추가해야 합니다.
+
+공개 저장소이므로 GitHub 토큰은 필수가 아닙니다. 이후 플러그인게시판에서 업데이트할 수 있습니다. 이 방식은 플러그인게시판 2.52.0의 설치 소스를 기준으로 검사했습니다.
+
+### ZIP으로 수동 설치하는 경우
 
 1. **[플러그인 ZIP 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/audiobook_opds-0.4.1.zip)** 후 압축을 풉니다.
 2. 압축 안의 `plugins/metadata/audiobook_opds` 폴더를 서버의 BookOasis 플러그인 폴더에 복사합니다.
