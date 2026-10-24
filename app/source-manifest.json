@@ -1,7 +1,7 @@
 {
   "source_zip": "Readest-BookOasis-0.12.16-b3-source.zip",
-  "source_bytes": 123257908,
-  "source_sha256": "acc434bfd725f6e48128916f1956c6be97d7ccc65fc6aca1bfa37bb35ed6903c",
+  "source_bytes": 123258516,
+  "source_sha256": "999c4c9a24e0f7a4516de7c6d65f5860d3dfb6956327f0a52704e5c47f2b4f41",
   "version": "0.12.16+bookoasis.3",
   "upstream_commit": "27694ba28b590cfb6c4c88092b73d31ed1338de9",
   "overrides": {
@@ -34,7 +34,7 @@
     "readest/apps/readest-app/src/__tests__/services/opds/playlist-controller.test.ts": "5c574c56afeb256b0d8d5ab14f3262ea67a16995c7bbb2ae4d3054f6110c1358",
     "readest/apps/readest-app/src-tauri/gen/android/app/tauri.properties": "adadd2b30debfe46b7b35ad85b9515fd51d8eb01e7b83d1a0fd1ed511af13d03",
     "readest/bookoasis/tauri.bookoasis.conf.json": "b4e079b0105838eef4bd3d3760a7d97538579d3d39328424c08f7719a8e81a4a",
-    "readest/bookoasis/INSTALL.ko.md": "9dc4af1ca55e7b0cafaf98759c6b2c18b7d5da1d5428249cbc340e921d24980c",
+    "readest/bookoasis/INSTALL.ko.md": "3a45349815947b852a7f87bc2ac8d0885f339480affe2306f5420c770533b084",
     "readest/bookoasis/BUILD-b3.ko.md": "6a61de52d02a05dad04f2a4b279b0cb0dfb8bcf7163ef4cc3a2913331a20ad12",
     "readest/bookoasis/VALIDATION.ko.md": "3b8a86264bccf093db7933fe2767c9d6112a5f0261c255c84d10d00fcc220417",
     "readest/bookoasis/BUILD-b1-b2-reference.ko.md": "f9f205218d6064fd2854df8787e31ef04bfd8e45b84e6d75b0b9cfef82796106",

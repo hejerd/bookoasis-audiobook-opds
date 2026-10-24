@@ -1,77 +1,138 @@
-# BookOasis Audiobook OPDS
+# BookOasis 오디오북 클라이언트 연결 플러그인
 
-BookOasis의 오디오북을 OPDS로 탐색하고, Android에서 회차를 골라 재생하기 위한 비공식 프로젝트입니다.
+**기존 BookOasis 서버에 추가해, 오디오북 클라이언트 앱에서 서버의 책을 찾아 듣게 해주는 플러그인입니다.**
 
-- **플러그인 `audiobook_opds` 0.4.1:** 카테고리, 표지 그리드, 제목/날짜 정렬, 인증, MP3·M4A·M4B 스트리밍과 다운로드
-- **Readest BookOasis b3:** Readest 0.12.16을 수정한 별도 Android 앱. 회차 목록에서 선택한 파일부터 준비하고 재생
-- BookOasis와 Readest 원본 프로젝트가 배포하는 공식 플러그인·공식 앱은 아닙니다.
+서버에는 `audiobook_opds` 플러그인을 설치하고, Android 휴대폰·태블릿에는 **Readest BookOasis** 앱을 설치합니다. 앱에 서버의 OPDS 주소와 BookOasis 계정을 등록하면 연결됩니다.
 
-## 다운로드
+**BookOasis 서버 → audiobook_opds 플러그인 → Readest BookOasis 앱 → 오디오북 재생**
 
-**[첫 배포 릴리스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.1-b3)**
+## 할 수 있는 것
 
-| 파일 | 용도 |
+- BookOasis에 등록된 오디오북을 카테고리별로 탐색
+- 표지와 제목을 그리드로 표시하고 제목순·최신 추가순 등으로 정렬
+- 책을 열어 회차 목록에서 원하는 회차 선택
+- 이어듣기, 이전·다음 회차 이동, 다음 회차 자동 재생
+- MP3·M4A·M4B 스트리밍과 다운로드
+
+기존 BookOasis 계정과 라이브러리 접근 권한을 사용합니다. Readest BookOasis는 이 연결에 맞춰 수정한 **비공식 Android 앱**이며, 공식 Readest와 별도로 설치됩니다.
+
+## 준비할 것
+
+| 설치할 곳 | 필요한 것 |
 | --- | --- |
-| [audiobook_opds-0.4.1.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/audiobook_opds-0.4.1.zip) | BookOasis 서버 플러그인, 소스, 문서, 샘플 테스트 |
-| [Readest-BookOasis-0.12.16-b3-arm64.apk](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-arm64.apk) | Android 8 이상 · arm64-v8a 설치 파일 |
-| [Readest-BookOasis-0.12.16-b3-source.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-source.zip) | 해당 APK의 전체 수정 소스, 고정 하위 모듈, 빌드 문서 |
-| [SHA256SUMS.txt](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/SHA256SUMS.txt) | 다운로드 파일 SHA256 |
+| 서버 | 오디오북이 등록되어 있는 BookOasis, 플러그인 폴더와 Docker 설정을 수정할 권한 |
+| 휴대폰·태블릿 | Android 8 이상, arm64-v8a 기기 |
+| 연결 정보 | 휴대폰에서 접속할 서버 주소, 기존 BookOasis 사용자 이름·비밀번호 |
 
-GitHub가 자동 생성하는 저장소 소스 ZIP은 이 저장소의 플러그인과 문서를 담습니다. **Readest 앱의 전체 대응 소스는 별도 첨부한 `Readest-BookOasis-0.12.16-b3-source.zip`입니다.**
+서버 플러그인은 BookOasis dashboard 3.0.2 환경에서 확인했습니다.
 
-## 서버 설치
+## 1. 서버에 플러그인 설치
 
-검증 기준: BookOasis dashboard 3.0.2, Ubuntu 24.04, Docker. 공식 소스의 `BaseMetadataProvider` 시작 후크(`general`)와 `get_db_gateway('audiobook')`를 사용합니다. 코어·DB 스키마를 수정하지 않습니다.
+1. **[플러그인 파일 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/archive/refs/heads/main.zip)** 후 압축을 풉니다. GitHub의 **Code → Download ZIP**으로 받아도 됩니다.
+2. 압축 안의 `plugins/metadata/audiobook_opds` 폴더를 서버의 BookOasis 플러그인 폴더에 복사합니다.
+3. 최종 파일 위치가 아래와 같으면 됩니다. `audiobook_opds` 폴더가 두 번 중첩되지 않도록 확인하세요.
 
-1. 기존 BookOasis 설정·DB·플러그인을 백업합니다.
-2. BookOasis 컨테이너를 정지하고 ZIP의 **`plugins/metadata/audiobook_opds/` 폴더만** 기존 플러그인 마운트의 같은 위치에 배치합니다.
-3. Docker 포트 매핑에 `5931:5931`을 추가합니다. 이미 있으면 유지합니다. 새 매핑을 추가할 때는 기존 볼륨·환경 변수를 유지해 컨테이너를 재생성합니다.
-4. BookOasis를 시작하고 관리자 플러그인 설정에서 **오디오북 OPDS**를 활성화합니다. OPDS 서비스 사용도 켭니다.
-5. 기본값은 수신 주소 `0.0.0.0`, 포트 `5931`, 페이지 크기 `30`입니다. 기본 URL은 비워두면 요청 주소를 사용합니다. 프록시 URL을 입력할 때 끝에 `/opds`를 붙이지 않습니다.
-6. 앱에 `http://서버주소:5931/opds`와 기존 BookOasis 사용자명·비밀번호를 등록합니다. 외부 접속은 HTTPS 프록시 구성을 사용합니다.
-
-[자세한 설치·설정·롤백](docs/INSTALL.ko.md)
-
-## 탐색과 재생
-
-카탈로그 첫 화면에서 카테고리를 고르면 **표지와 아래 제목**이 그리드로 표시됩니다. 기존 카탈로그 화면은 닫고 다시 열어 새 목록을 받습니다.
-
-- 정렬: 제목 가나다순/역순, 최신/오래된 추가순, 최근 수정순. 작은 화면은 상단 필터 메뉴, 큰 화면은 옆 패널에 표시될 수 있습니다.
-- 검색: 카테고리를 선택한 뒤 검색하면 그 카테고리 안에서 찾습니다.
-- b3에서 여러 회차의 책을 열면 회차 목록이 먼저 표시됩니다. 중간 회차를 바로 선택할 수 있고 재생 중 **회차 목록** 버튼으로 다시 선택할 수 있습니다.
-- 선택한 파일의 길이만 준비합니다. 파일을 하나로 병합하지 않습니다. 재생 시간·탐색 막대는 현재 회차 기준이고, 회차가 끝나면 다음 회차로 이동합니다.
-- 마지막 회차와 파일 안의 재생 위치를 저장합니다. 앱과 BookOasis 사이의 위치 동기화는 제공하지 않습니다.
-
-## 인증과 권한
-
-기존 BookOasis 계정의 오디오북 접근·라이브러리 권한과 다운로드 권한을 적용합니다. 기본 암호 상태의 계정은 먼저 BookOasis에서 암호를 변경해야 합니다. 원본 미디어 경로는 허용된 라이브러리/책 폴더 내부인지 검사합니다. 미디어 누락이나 잘못된 기존 경로는 이 플러그인으로 복구되지 않습니다.
-
-## 검증 범위
-
-| 대상 | 실제 수행 결과 |
-| --- | --- |
-| 플러그인 0.4.1 | 임시 DB·짧은 생성 샘플을 사용한 최종 172개 검사 통과. 초기 171개 통과 + 변경된 피드 계약 검사 1개 수정 후 재실행 통과 |
-| 실제 서버 데이터 | 읽기 전용 검사로 450권의 목록/상세 회차 일치, 정렬 75개, 표지 3개, 음원 2개의 HEAD 200·Range 206 확인 |
-| Readest b3 | 관련 291개 회귀 테스트, TypeScript, 전체 Biome lint, 프런트엔드·Android 빌드와 APK 서명/정렬 검사 통과 |
-| 한계 | b3 Android 실기 소리·백그라운드·초기 대기 시간은 이번 빌드에서 확인하지 못함. Readest 전체 원본 테스트는 범위 밖 실패가 발생해 완료하지 못함. MariaDB 실기 검증 없음 |
-
-[플러그인 검증](docs/VALIDATION.ko.md) · [앱 설치](app/INSTALL.ko.md) · [앱 검증](app/VALIDATION.ko.md) · [앱 빌드](app/BUILD-b3.ko.md)
-
-## 개발과 소스
-
-플러그인 코드는 `plugins/metadata/audiobook_opds/`, 샘플 검사는 `tests/`에 있습니다. 공식 BookOasis 소스 커밋 `f4f80943bc46e8b673674b88bc40fc16bfafbd98`을 기준으로 실제 API를 확인했습니다.
-
-```bash
-python -m pytest tests --bookoasis-source /path/to/BookOasis_stable -q
+```text
+BookOasis 플러그인 폴더/
+└── metadata/
+    └── audiobook_opds/
+        ├── __init__.py
+        ├── audiobook_opds.py
+        └── VERSION
 ```
 
-테스트 의존성은 Flask, Werkzeug, Pillow, requests, python-dotenv, mutagen, pytest, imageio-ffmpeg 및 BookOasis 실행 의존성입니다. 샘플은 직접 생성한 2초 사인파이며 사용자 오디오북은 포함하지 않습니다.
+Docker를 사용한다면 컨테이너의 `/app/plugins`에 연결된 **서버 쪽 폴더**에 넣습니다. [폴더 위치 확인 방법](docs/INSTALL.ko.md#1-플러그인-파일-넣기)
 
-앱 ID는 `com.bilingify.readest.bookoasis`, 버전은 `0.12.16+bookoasis.3` / Android versionCode `12018`입니다. 기존 BookOasis b1/b2와 동일 서명으로 업데이트할 수 있고 공식 Readest와 별도 설치됩니다. 원본 Readest 커밋은 `27694ba28b590cfb6c4c88092b73d31ed1338de9`입니다. 빌드 문서와 하위 모듈 소스는 앱 소스 ZIP에 포함합니다.
+### Docker 포트 추가
 
-## 원본 프로젝트와 라이선스
+이 플러그인은 OPDS 연결에 **5931 포트**를 사용합니다. 기존 BookOasis 웹 화면 포트와 함께 사용할 수 있도록 `docker-compose.yml`의 BookOasis 서비스 `ports` 목록에 다음 한 줄을 추가합니다.
 
-- [BookOasis_stable](https://github.com/leeyj/BookOasis_stable)
-- [Readest](https://github.com/readest/readest)
-- 플러그인은 [AGPL-3.0](LICENSE)으로 배포합니다. Readest 수정판은 원본 AGPL-3.0 고지와 하위 구성 요소 라이선스를 유지하며 전체 소스를 함께 제공합니다.
-- 소스 변경과 파일 목록은 [변경 이력](CHANGELOG.md), [소스 조사](docs/SOURCE_AUDIT.ko.md)를 참고하세요.
+```yaml
+- "5931:5931"
+```
+
+기존 포트·볼륨·환경 변수는 그대로 두고, Compose 파일이 있는 폴더에서 다음을 실행합니다. 예시 서비스 이름은 `bookoasis`입니다.
+
+```bash
+docker compose up -d bookoasis
+```
+
+이미 `5931:5931`이 설정되어 있다면 파일 복사 후 BookOasis 컨테이너만 재시작하면 됩니다. **서버 OS를 재부팅할 필요는 없습니다.**
+
+## 2. BookOasis에서 서비스 켜기
+
+1. BookOasis에 **관리자 계정**으로 접속합니다.
+2. **일반 도서 → 환경설정 → 플러그인 설정**에서 **오디오북 OPDS**를 찾습니다.
+3. 플러그인 활성화 스위치를 켭니다.
+4. **OPDS 서비스 시작 → 사용**을 체크하고 아래 값을 확인합니다.
+5. **설정 저장**을 누릅니다.
+
+| 설정 항목 | 처음 설치할 때 입력할 값 |
+| --- | --- |
+| 수신 주소 | `0.0.0.0` |
+| 컨테이너 내부 포트 | `5931` |
+| 앱에서 접속할 기본 URL | 비워두기 |
+| 페이지당 목록 항목 수 | `30` |
+| 카탈로그 제목 | `BookOasis Audiobooks` 또는 원하는 이름 |
+
+휴대폰 브라우저에서 `http://서버주소:5931/opds`를 열어 보세요. BookOasis 계정으로 인증한 뒤 XML 형식의 목록이 보이면 서버 준비가 끝난 것입니다.
+
+## 3. Android 앱 설치
+
+**[다운로드 페이지](https://github.com/hejerd/bookoasis-audiobook-opds/releases)**에서 `Readest-BookOasis-…-arm64.apk`를 받아 휴대폰·태블릿에서 엽니다. Android가 해당 브라우저·파일 앱의 설치 허용을 요구하면 허용한 뒤 설치합니다.
+
+> 현재 Android APK와 앱 전체 소스는 릴리스 첨부 전입니다. APK가 다운로드 페이지에 표시된 뒤 설치할 수 있습니다. 서버 플러그인은 위 ZIP으로 설치할 수 있습니다.
+
+앱 이름은 **Readest BookOasis**입니다. 공식 Readest가 설치되어 있어도 함께 설치할 수 있습니다. 기존 Readest BookOasis를 사용 중이면 삭제하지 않고 APK를 열어 업데이트합니다.
+
+## 4. 앱에 내 서버 등록
+
+1. **Readest BookOasis**를 실행합니다.
+2. 서재 위쪽 **`+` → 온라인 라이브러리**를 엽니다. 기기에 따라 **OPDS 카탈로그**로 표시될 수 있습니다.
+3. **내 카탈로그 → 카탈로그 추가**를 누릅니다.
+4. 다음 내용을 입력하고 **카탈로그 추가**를 누릅니다.
+
+| 앱 입력 항목 | 입력 예시 |
+| --- | --- |
+| 카탈로그 이름 | `내 BookOasis 오디오북` |
+| OPDS URL | `http://서버주소:5931/opds` |
+| 사용자 이름 | BookOasis에 로그인할 때 쓰는 사용자 이름 |
+| 비밀번호 | 해당 BookOasis 계정의 비밀번호 |
+
+예를 들어 집 안 서버 주소가 `192.168.1.10`이면 `http://192.168.1.10:5931/opds`를 입력합니다. 휴대폰과 서버가 같은 네트워크에 있어야 이 주소로 접속할 수 있습니다.
+
+앱의 사용자 이름·비밀번호 칸에 ‘선택 사항’이라고 표시되어도 **이 플러그인에 연결할 때는 둘 다 입력해야 합니다.** OPDS 연결에 Readest 계정이나 Google 로그인은 필요하지 않습니다.
+
+## 5. 책 고르고 듣기
+
+1. **내 카탈로그**에서 방금 등록한 서버를 엽니다.
+2. 카테고리를 고르면 책 표지와 제목이 나옵니다.
+3. 원하는 책을 열고 **재생**을 누릅니다.
+4. 여러 회차로 된 책은 **회차 목록**에서 듣고 싶은 회차를 선택합니다. 한 파일로 된 책은 바로 플레이어로 이동합니다.
+5. 재생 중 **회차 목록**, 이전·다음 버튼으로 회차를 바꿀 수 있습니다. 다시 열 때는 **재개**로 이어듣습니다.
+
+정렬 메뉴에서 **제목 가나다순 / 제목 역순 / 최신 추가순 / 오래된 추가순 / 최근 수정순**을 고를 수 있습니다. 재생 시간과 탐색 막대는 현재 회차 기준입니다.
+
+## 집 밖에서도 접속하려면
+
+휴대폰에서 접근할 수 있는 외부 주소가 필요합니다. HTTPS 리버스 프록시를 사용한다면 OPDS용 도메인을 서버의 **5931 포트**로 연결하고, 앱에는 `https://audio.example.com/opds` 형태로 등록합니다.
+
+이때 플러그인의 **앱에서 접속할 기본 URL**에는 `https://audio.example.com`을 입력합니다. 이 설정에는 끝에 `/opds`를 붙이지 않습니다. 기존 BookOasis 웹 화면만 외부에 연결되어 있다면 OPDS용 연결도 추가해야 합니다. [주소와 포트 설정 자세히 보기](docs/INSTALL.ko.md#외부에서-접속하기)
+
+## 잘 안 될 때
+
+| 증상 | 확인할 것 |
+| --- | --- |
+| 오디오북 OPDS가 설정에 안 보임 | 파일 위치가 `plugins/metadata/audiobook_opds/`인지 확인하고 BookOasis 재시작 |
+| 주소에 연결할 수 없음 | `5931:5931`, OPDS 서비스 사용 체크, 서버 주소와 방화벽 확인 |
+| 인증 실패 | BookOasis 계정·비밀번호 확인. 기본 비밀번호 상태라면 BookOasis에서 변경 후 사용 |
+| 카테고리가 비어 있음 | BookOasis의 오디오북 등록 상태와 해당 계정의 라이브러리 접근 권한 확인 |
+| 책은 나오는데 재생 안 됨 | 서버에서 원본 파일을 읽을 수 있는지 확인하고 Readest BookOasis 앱으로 재생 |
+
+[서버 설치 자세히 보기](docs/INSTALL.ko.md) · [앱 설치와 사용 자세히 보기](app/INSTALL.ko.md)
+
+## 소스와 라이선스
+
+이 프로젝트는 [BookOasis](https://github.com/leeyj/BookOasis_stable)와 [Readest](https://github.com/readest/readest)의 비공식 확장입니다. 플러그인과 앱 수정판은 AGPL-3.0 라이선스를 따르며, 원본 고지를 유지합니다. 앱 APK를 게시할 때 해당 버전의 전체 수정 소스도 함께 첨부합니다.
+
+[라이선스](LICENSE) · [변경 이력](CHANGELOG.md) · [개발·검증 자료](docs/DEVELOPMENT.ko.md)
