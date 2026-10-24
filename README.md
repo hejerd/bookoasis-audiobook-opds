@@ -6,6 +6,12 @@
 
 **BookOasis 서버 → audiobook_opds 플러그인 → Readest BookOasis 앱 → 오디오북 재생**
 
+> **현재 버전: 플러그인 0.4.2 · 신규 설치 기본 포트 5941**
+>
+> Docker에는 `5941:5941`, 앱에는 `http://서버주소:5941/opds`를 사용합니다. 기존 5931 설정은 업데이트만으로 바뀌지 않으므로 플러그인 내부 포트·Docker 매핑·앱 주소 또는 프록시 연결 대상을 함께 변경하세요. 다른 플러그인이 사용하는 5931 매핑은 유지합니다. [기존 설치 전환 방법](docs/INSTALL.ko.md#기존-5931에서-5941로-옮기기)
+>
+> Android 앱은 기존 Readest BookOasis b3 APK를 그대로 사용합니다.
+
 ## 할 수 있는 것
 
 - BookOasis에 등록된 오디오북을 카테고리별로 탐색
@@ -71,7 +77,7 @@ Docker를 사용한다면 컨테이너의 `/app/plugins`에 연결된 **서버 �
 
 ### Docker 포트 추가
 
-이 플러그인은 OPDS 연결에 **5941 포트**를 사용합니다. 기존 BookOasis 웹 화면 포트와 함께 사용할 수 있도록 `docker-compose.yml`의 BookOasis 서비스 `ports` 목록에 다음 한 줄을 추가합니다.
+이 플러그인은 OPDS 연결에 기본적으로 **5941 포트**를 사용합니다. 기존 BookOasis 웹 화면 포트와 함께 사용할 수 있도록 `docker-compose.yml`의 BookOasis 서비스 `ports` 목록에 다음 한 줄을 추가합니다.
 
 ```yaml
 - "5941:5941"
