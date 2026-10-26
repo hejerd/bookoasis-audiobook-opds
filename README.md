@@ -38,7 +38,6 @@
 | --- | --- |
 | [audiobook_opds-0.4.2.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/audiobook_opds-0.4.2.zip) | BookOasis 서버용 플러그인 |
 | [Readest BookOasis APK](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-arm64.apk) | Android 휴대폰·태블릿에 설치 |
-| [앱 전체 수정 소스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-source.zip) | 개발·수정용이며 앱 설치에는 필요 없음 |
 | [플러그인 SHA256](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/SHA256SUMS.txt) | 플러그인 ZIP 확인용 |
 
 플러그인게시판을 사용한다면 **아래 Git URL로 서버에 설치하고 APK만 받으면 됩니다.** ZIP은 수동 설치용입니다. 이 버전은 사전 공개 버전입니다. [플러그인 0.4.2 릴리스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.2)
@@ -165,6 +164,6 @@ docker compose up -d bookoasis
 
 ## 소스와 라이선스
 
-이 프로젝트는 [BookOasis](https://github.com/leeyj/BookOasis_stable)와 [Readest](https://github.com/readest/readest)의 비공식 확장입니다. 플러그인과 앱 수정판은 AGPL-3.0 라이선스를 따르며, 원본 고지를 유지합니다. 앱 APK와 해당 버전의 전체 수정 소스를 함께 제공합니다. GitHub가 자동 생성하는 `Source code` ZIP은 이 배포 저장소이고, 앱 전체 소스는 위의 별도 `b3-source.zip`입니다.
+이 프로젝트는 [BookOasis](https://github.com/leeyj/BookOasis_stable)와 [Readest](https://github.com/readest/readest)의 비공식 확장입니다. 플러그인과 앱 수정판은 AGPL-3.0 라이선스를 따르며, 원본 고지를 유지합니다. 앱 APK와 해당 버전의 전체 수정 소스를 함께 제공합니다. GitHub가 자동 생성하는 `Source code` ZIP은 이 배포 저장소이고, 앱 전체 소스는 릴리스의 [별도 소스 ZIP](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-source.zip)으로 제공합니다.
 
 [라이선스](LICENSE) · [변경 이력](CHANGELOG.md) · [개발·검증 자료](docs/DEVELOPMENT.ko.md)
