@@ -38,7 +38,6 @@
 | --- | --- |
 | [audiobook_opds-0.4.2.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/audiobook_opds-0.4.2.zip) | BookOasis 서버용 플러그인 |
 | [Readest BookOasis APK](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-arm64.apk) | Android 휴대폰·태블릿에 설치 |
-| [플러그인 SHA256](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/SHA256SUMS.txt) | 플러그인 ZIP 확인용 |
 
 플러그인게시판을 사용한다면 **아래 Git URL로 서버에 설치하고 APK만 받으면 됩니다.** ZIP은 수동 설치용입니다. 이 버전은 사전 공개 버전입니다. [플러그인 0.4.2 릴리스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.2)
 
