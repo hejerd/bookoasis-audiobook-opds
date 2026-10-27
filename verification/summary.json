@@ -8,6 +8,8 @@
   "core_code_modified": false,
   "native_insights_98_percent_fixed": false,
   "separate_progress_widget": true,
-  "app_related_tests_passed": 883,
-  "app_full_upstream_suite_passed": false
+  "app_related_tests_passed": 396,
+  "app_full_upstream_suite_passed": false,
+  "app_version": "b7",
+  "android_device_tested": false
 }

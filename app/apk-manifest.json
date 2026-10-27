@@ -1,15 +1,15 @@
 {
-  "certificate_sha256": "f2ca656380ccc456f5c511627bc4975eb2df4e467cc24259d7e165810c30c41b",
-  "signature_verified": true,
-  "abi": "arm64-v8a",
-  "application_id": "com.bilingify.readest.bookoasis",
-  "sha256": "56be8f082364a7cb7cc403614168c2dcf7151d5731b39f32b68fd5537122c70a",
-  "version_code": 12021,
-  "bytes": 55642848,
   "android_device_tested": false,
+  "version_name": "0.12.16+bookoasis.7",
+  "abi": "arm64-v8a",
+  "bytes": 55642844,
+  "sha256": "2f4ca1d80ff99a180097e19f97436091b6ba4c5bc8d89802c35357424ebdb729",
+  "certificate_sha256": "f2ca656380ccc456f5c511627bc4975eb2df4e467cc24259d7e165810c30c41b",
   "min_sdk": 26,
-  "version_name": "0.12.16+bookoasis.6",
-  "filename": "Readest-BookOasis-0.12.16-b6-arm64.apk",
+  "application_id": "com.bilingify.readest.bookoasis",
+  "version_code": 12022,
+  "signature_verified": true,
+  "filename": "Readest-BookOasis-0.12.16-b7-arm64.apk",
   "unchanged_from_test_build": true,
-  "release_tag": "v0.5.2-b6"
+  "release_tag": "v0.5.2-b7"
 }

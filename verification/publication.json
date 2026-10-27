@@ -1,8 +1,12 @@
 {
-  "release_tag": "v0.5.2-b6",
+  "release_tag": "v0.5.2-b7",
   "default_port": 5941,
-  "plugin_runtime_unchanged_from": "0.5.2-test1 (except VERSION)",
-  "apk_unchanged_from": "b6-test1",
+  "plugin_runtime_unchanged_from": "v0.5.2-b6",
+  "apk_unchanged_from": "b7-test1",
+  "core_code_modified": false,
+  "app_related_tests_passed": 396,
+  "app_full_suite_passed": false,
+  "android_device_tested": false,
   "assets": [
     {
       "filename": "audiobook_opds-0.5.2.zip",
@@ -10,15 +14,14 @@
       "sha256": "41560c1b904e1675528b06ba671696f338e840e506784eb37a1370cf75fcb4b5"
     },
     {
-      "filename": "Readest-BookOasis-0.12.16-b6-arm64.apk",
-      "bytes": 55642848,
-      "sha256": "56be8f082364a7cb7cc403614168c2dcf7151d5731b39f32b68fd5537122c70a"
+      "filename": "Readest-BookOasis-0.12.16-b7-arm64.apk",
+      "bytes": 55642844,
+      "sha256": "2f4ca1d80ff99a180097e19f97436091b6ba4c5bc8d89802c35357424ebdb729"
     },
     {
-      "filename": "Readest-BookOasis-0.12.16-b6-source.zip",
-      "bytes": 123296749,
-      "sha256": "9fe8d4fc4b784d2f5e6a60a1c125c4694b8117a25bcc3bbed6ee596c2e745526"
+      "filename": "Readest-BookOasis-0.12.16-b7-source.zip",
+      "bytes": 123303207,
+      "sha256": "a1b55d049879156d72e7dc204f916ceb8a50f2880d3c29a503363125072b4447"
     }
-  ],
-  "core_code_modified": false
+  ]
 }

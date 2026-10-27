@@ -12,4 +12,4 @@
 python -m pytest tests --bookoasis-source /path/to/BookOasis_stable --plugin-source /path/to/audiobook_opds
 ```
 
-[플러그인 검증](VALIDATION.ko.md) · [공식 소스 확인 기록](SOURCE_AUDIT.ko.md) · [앱 빌드](../app/BUILD-b6.ko.md)
+[플러그인 검증](VALIDATION.ko.md) · [공식 소스 확인 기록](SOURCE_AUDIT.ko.md) · [앱 빌드](../app/BUILD-b7.ko.md)
