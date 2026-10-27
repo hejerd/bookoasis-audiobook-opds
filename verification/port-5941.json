@@ -9,5 +9,7 @@
     "seconds": 23.51
   },
   "scope": "Local isolated tests and configuration smoke checks. Production server was not changed.",
-  "apk": "Existing Readest BookOasis b3 APK remains compatible; users edit the catalog URL or proxy target."
+  "apk": "b6 required for new BookOasis synchronization and whole-book progress features.",
+  "historical_check_version": "0.4.2",
+  "current_plugin_version": "0.5.2"
 }

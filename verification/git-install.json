@@ -9,25 +9,15 @@
   "installed_folder": "audiobook_opds",
   "static_validation": true,
   "static_warnings": 0,
+  "plugin_version": "0.5.2",
   "main_module_unchanged": true,
-  "main_module_sha256": "7e3718ee6a2997f75f041595db76881ac8995cdbdc4991f33d9190a45297e90c",
+  "runtime_files_verified": 6,
+  "main_module_sha256": "c8481ed07491587712bf1f36896a20c20f7514f6b776d06df87bc75aac97ad1f",
   "git_download_paths": [
     "https://codeload.github.com/hejerd/bookoasis-audiobook-opds/zip/refs/heads/main",
     "https://codeload.github.com/hejerd/bookoasis-audiobook-opds/zip/refs/heads/main",
     "https://codeload.github.com/hejerd/bookoasis-audiobook-opds/zip/refs/heads/main"
   ],
-  "limits": "Local filesystem simulation. GitHub transport and live core reload are replaced; production server untouched.",
-  "regression": {
-    "passed": 172,
-    "failed": 0,
-    "seconds": 166.07,
-    "includes": [
-      "BookOasis MetadataFactory loader",
-      "loopback HTTP authentication and Range"
-    ]
-  },
-  "test_source_archive": {
-    "path": "verification/plugin-tests.zip",
-    "sha256": "9289304e05cc44bc79dba4ef7a3f56367bd6fc4f4d0c98e5bc3ca00556e678d9"
-  }
+  "remote_archive_verified": false,
+  "limits": "Local filesystem simulation. GitHub transport and live core reload are replaced; production server untouched."
 }

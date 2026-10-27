@@ -16,7 +16,7 @@
 
 ### ZIP으로 수동 설치
 
-1. 릴리스의 [audiobook_opds-0.4.2.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/audiobook_opds-0.4.2.zip)을 다운로드해 압축을 풉니다.
+1. 릴리스의 [audiobook_opds-0.5.2.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.5.2-b6/audiobook_opds-0.5.2.zip)을 다운로드해 압축을 풉니다.
 2. 압축 안에서 `plugins/metadata/audiobook_opds` 폴더를 찾습니다.
 3. 이 `audiobook_opds` 폴더를 서버의 BookOasis 플러그인 폴더 아래 `metadata` 안에 넣습니다.
 
@@ -37,10 +37,13 @@ plugins/
     └── audiobook_opds/
         ├── __init__.py
         ├── audiobook_opds.py
-        └── VERSION
+        ├── VERSION
+        ├── dashboard.html
+        ├── dashboard.css
+        └── dashboard.js
 ```
 
-릴리스 ZIP에서는 그 안의 **`audiobook_opds` 폴더 하나**를 복사합니다. GitHub의 **Code → Download ZIP**은 저장소 최상위에 플러그인 파일이 있는 구조입니다. 이 파일을 사용한다면 `audiobook_opds` 폴더를 직접 만들고 그 안에 `__init__.py`, `audiobook_opds.py`, `VERSION` 세 파일과 `LICENSE`를 넣으세요.
+릴리스 ZIP에서는 그 안의 **`audiobook_opds` 폴더 하나**를 복사합니다. GitHub의 **Code → Download ZIP**은 저장소 최상위에 플러그인 파일이 있는 구조입니다. 이 파일을 사용한다면 `audiobook_opds` 폴더를 직접 만들고 그 안에 `__init__.py`, `audiobook_opds.py`, `VERSION`, `dashboard.html`, `dashboard.css`, `dashboard.js` 여섯 파일과 `LICENSE`를 넣으세요.
 
 ## 2. Docker 포트 5941 추가
 
@@ -121,7 +124,7 @@ BookOasis 계정의 오디오북 접근 권한과 라이브러리 접근 권한�
 
 0.4.2부터 신규 설치 기본 포트는 **5941**입니다. 이미 저장된 **5931은 업데이트만으로 바뀌지 않습니다.** 사용 중인 주소를 옮기려면 다음을 함께 적용합니다.
 
-1. Git URL 설치 또는 업데이트로 플러그인 0.4.2를 적용합니다.
+1. Git URL 설치 또는 업데이트로 최신 플러그인을 적용합니다.
 2. **오디오북 OPDS 설정 → 컨테이너 내부 포트**를 `5941`로 바꾸고 저장합니다.
 3. Docker의 `ports`에 `5941:5941`을 추가합니다. `5931:5931`을 다른 플러그인이 사용한다면 그 매핑은 유지합니다.
 4. Compose 파일이 있는 폴더에서 `docker compose up -d bookoasis`로 적용합니다. 서비스 이름이 다르면 실제 이름을 사용합니다.
@@ -140,7 +143,11 @@ BookOasis 계정의 오디오북 접근 권한과 라이브러리 접근 권한�
 3. BookOasis 컨테이너를 재시작합니다. 5941 매핑과 저장한 플러그인 설정은 그대로 사용합니다.
 4. 앱의 카탈로그 화면을 닫고 다시 엽니다.
 
-이 플러그인은 기존 책 DB를 변환하거나 미디어를 옮기지 않습니다. 신규 설치를 위해 DB 전체 백업·복원이 필요한 것은 아닙니다.
+이 플러그인은 기존 DB 구조를 변환하거나 미디어를 옮기지 않습니다. 동기화 기능은 계정별 재생목록·위치와 BookOasis의 기존 청취 기록을 저장합니다. 신규 설치를 위해 DB 전체 백업·복원이 필요한 것은 아닙니다.
+
+## 동기화와 웹 진행률 위젯
+
+앱 b6를 함께 설치하고 같은 OPDS 서버·계정으로 접속하세요. 별도 동기화 버튼은 필요하지 않습니다. 웹 홈에서는 **내 설정 → 홈 화면 플러그인 배치 모드 → 위젯 추가 → 오디오북 청취 진행률**로 위젯을 추가합니다. 기존 ‘현재 읽는 중’ 카드의 계산식은 변경되지 않습니다. [사용 방법과 표시 기준](../README.md#6-자동-동기화와-전체-진행률)을 확인하세요.
 
 ## 사용 중지와 제거
 

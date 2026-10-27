@@ -6,11 +6,11 @@
 
 **BookOasis 서버 → audiobook_opds 플러그인 → Readest BookOasis 앱 → 오디오북 재생**
 
-> **현재 버전: 플러그인 0.4.2 · 신규 설치 기본 포트 5941**
+> **현재 버전: 플러그인 0.5.2 · 앱 b6 · 기본 포트 5941**
 >
 > Docker에는 `5941:5941`, 앱에는 `http://서버주소:5941/opds`를 사용합니다. 기존 5931 설정은 업데이트만으로 바뀌지 않으므로 플러그인 내부 포트·Docker 매핑·앱 주소 또는 프록시 연결 대상을 함께 변경하세요. 다른 플러그인이 사용하는 5931 매핑은 유지합니다. [기존 설치 전환 방법](docs/INSTALL.ko.md#기존-5931에서-5941로-옮기기)
 >
-> Android 앱은 기존 Readest BookOasis b3 APK를 그대로 사용합니다.
+> 자동 동기화와 전체 진행률을 사용하려면 아래 b6 APK로 업데이트하세요. 기존 앱을 삭제할 필요는 없습니다.
 
 ## 할 수 있는 것
 
@@ -19,6 +19,9 @@
 - 책을 열어 회차 목록에서 원하는 회차 선택
 - 이어듣기, 이전·다음 회차 이동, 다음 회차 자동 재생
 - MP3·M4A·M4B 스트리밍과 다운로드
+- 내 BookOasis 서버에 재생목록·현재 회차·재생 위치 자동 동기화
+- 앱과 BookOasis 웹 사이 이어듣기, 전체 회차 진행률·남은 시간 표시
+- 웹 홈에 추가할 수 있는 **오디오북 청취 진행률** 위젯
 
 기존 BookOasis 계정과 라이브러리 접근 권한을 사용합니다. Readest BookOasis는 이 연결에 맞춰 수정한 **비공식 Android 앱**이며, 공식 Readest와 별도로 설치됩니다.
 
@@ -36,10 +39,10 @@
 
 | 파일 | 설치할 곳·용도 |
 | --- | --- |
-| [audiobook_opds-0.4.2.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/audiobook_opds-0.4.2.zip) | BookOasis 서버용 플러그인 |
-| [Readest BookOasis APK](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-arm64.apk) | Android 휴대폰·태블릿에 설치 |
+| [audiobook_opds-0.5.2.zip](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.5.2-b6/audiobook_opds-0.5.2.zip) | BookOasis 서버용 플러그인 |
+| [Readest BookOasis APK](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.5.2-b6/Readest-BookOasis-0.12.16-b6-arm64.apk) | Android 휴대폰·태블릿에 설치 |
 
-플러그인게시판을 사용한다면 **아래 Git URL로 서버에 설치하고 APK만 받으면 됩니다.** ZIP은 수동 설치용입니다. 이 버전은 사전 공개 버전입니다. [플러그인 0.4.2 릴리스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.4.2)
+플러그인게시판을 사용한다면 **아래 Git URL로 서버에 설치하고 APK만 받으면 됩니다.** ZIP은 수동 설치용입니다. 이 버전은 사전 공개 버전입니다. [플러그인 0.5.2 + 앱 b6 릴리스](https://github.com/hejerd/bookoasis-audiobook-opds/releases/tag/v0.5.2-b6)
 
 ## 1. 서버에 플러그인 설치
 
@@ -58,7 +61,7 @@
 
 ### ZIP으로 수동 설치하는 경우
 
-1. **[플러그인 ZIP 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.2/audiobook_opds-0.4.2.zip)** 후 압축을 풉니다.
+1. **[플러그인 ZIP 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.5.2-b6/audiobook_opds-0.5.2.zip)** 후 압축을 풉니다.
 2. 압축 안의 `plugins/metadata/audiobook_opds` 폴더를 서버의 BookOasis 플러그인 폴더에 복사합니다.
 3. 최종 파일 위치가 아래와 같으면 됩니다. `audiobook_opds` 폴더가 두 번 중첩되지 않도록 확인하세요.
 
@@ -68,7 +71,10 @@ BookOasis 플러그인 폴더/
     └── audiobook_opds/
         ├── __init__.py
         ├── audiobook_opds.py
-        └── VERSION
+        ├── VERSION
+        ├── dashboard.html
+        ├── dashboard.css
+        └── dashboard.js
 ```
 
 Docker를 사용한다면 컨테이너의 `/app/plugins`에 연결된 **서버 쪽 폴더**에 넣습니다. [폴더 위치 확인 방법](docs/INSTALL.ko.md#1-플러그인-파일-넣기)
@@ -111,7 +117,7 @@ docker compose up -d bookoasis
 
 ## 3. Android 앱 설치
 
-**[Readest BookOasis APK 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-arm64.apk)** 후 휴대폰·태블릿에서 엽니다. Android가 해당 브라우저·파일 앱의 설치 허용을 요구하면 허용한 뒤 설치합니다.
+**[Readest BookOasis APK 다운로드](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.5.2-b6/Readest-BookOasis-0.12.16-b6-arm64.apk)** 후 휴대폰·태블릿에서 엽니다. Android가 해당 브라우저·파일 앱의 설치 허용을 요구하면 허용한 뒤 설치합니다.
 
 앱 이름은 **Readest BookOasis**입니다. 공식 Readest가 설치되어 있어도 함께 설치할 수 있습니다. 기존 Readest BookOasis를 사용 중이면 삭제하지 않고 APK를 열어 업데이트합니다.
 
@@ -143,6 +149,28 @@ docker compose up -d bookoasis
 
 정렬 메뉴에서 **제목 가나다순 / 제목 역순 / 최신 추가순 / 오래된 추가순 / 최근 수정순**을 고를 수 있습니다. 재생 시간과 탐색 막대는 현재 회차 기준입니다.
 
+## 6. 자동 동기화와 전체 진행률
+
+앱 b6에서 등록한 OPDS 서버를 열고 오디오북을 재생하면 해당 BookOasis 계정에 재생목록과 위치를 저장합니다. 같은 서버·같은 BookOasis 계정을 쓰는 다른 기기에서도 이어듣습니다. **동기화 버튼을 누르거나 Google 계정으로 로그인할 필요가 없습니다.** 서재의 작은 동기화 아이콘으로 상태를 확인합니다.
+
+- 앱을 열거나 화면으로 돌아올 때, 네트워크가 복구될 때, 화면이 활성 상태인 동안 주기적으로 동기화합니다. 오프라인 변경은 연결이 돌아오면 재시도합니다.
+- BookOasis 웹에서 들은 회차와 위치도 앱으로 가져옵니다. 앱에서 들은 기록은 웹의 최근 들은 오디오북과 이어듣기에 반영됩니다. 여러 기기를 동시에 재생하면 마지막으로 저장된 위치를 확인하세요.
+- 플레이어와 서재에서 **현재 회차 / 전체 회차**, 전체 진행률과 남은 시간을 표시합니다. 재생 막대는 현재 회차 기준입니다.
+- 회차 길이를 모두 확인하기 전에는 **회차 기준 약 % / 전체 시간 확인 전**으로 표시합니다. 전체 위치는 건너뛴 회차까지 실제로 청취했다는 뜻은 아닙니다.
+
+BookOasis OPDS의 재생목록·위치는 **내 BookOasis 서버**로 동기화하며, 이 자료를 Readest 공식 클라우드에 업로드하지 않습니다. 일반 전자책의 기존 Readest 클라우드 기능은 별개입니다.
+
+## 7. 웹 홈에 진행률 위젯 추가
+
+1. BookOasis의 **오디오북** 홈을 엽니다.
+2. **내 설정 → 홈 화면 플러그인 배치 모드**를 켭니다.
+3. 홈의 **위젯 추가 → 오디오북 청취 진행률**을 선택합니다.
+4. 현재 회차, 전체 진행률, 전체 길이와 남은 시간을 확인합니다. 제목을 누르면 웹 플레이어에서 이어듣습니다.
+
+화면을 보고 있는 동안 30초 간격으로 갱신됩니다. 본인 계정의 기록과 접근 가능한 책만 표시합니다.
+
+**기존 ‘현재 읽는 중’ 카드의 98% 표시는 이 업데이트로 고쳐지지 않습니다.** 이 플러그인은 본체 코드를 수정하지 않고 별도 위젯에서 전체 진행률을 계산합니다. 기존 카드가 혼동된다면 홈 배치 설정에서 **독서 인사이트**를 숨길 수 있지만, 연속 독서·연간 목표·장르 통계도 함께 숨겨집니다.
+
 ## 집 밖에서도 접속하려면
 
 휴대폰에서 접근할 수 있는 외부 주소가 필요합니다. HTTPS 리버스 프록시를 사용한다면 OPDS용 도메인을 서버의 **5941 포트**로 연결하고, 앱에는 `https://audio.example.com/opds` 형태로 등록합니다.
@@ -163,6 +191,6 @@ docker compose up -d bookoasis
 
 ## 소스와 라이선스
 
-이 프로젝트는 [BookOasis](https://github.com/leeyj/BookOasis_stable)와 [Readest](https://github.com/readest/readest)의 비공식 확장입니다. 플러그인과 앱 수정판은 AGPL-3.0 라이선스를 따르며, 원본 고지를 유지합니다. 앱 APK와 해당 버전의 전체 수정 소스를 함께 제공합니다. GitHub가 자동 생성하는 `Source code` ZIP은 이 배포 저장소이고, 앱 전체 소스는 릴리스의 [별도 소스 ZIP](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.4.1-b3/Readest-BookOasis-0.12.16-b3-source.zip)으로 제공합니다.
+이 프로젝트는 [BookOasis](https://github.com/leeyj/BookOasis_stable)와 [Readest](https://github.com/readest/readest)의 비공식 확장입니다. 플러그인과 앱 수정판은 AGPL-3.0 라이선스를 따르며, 원본 고지를 유지합니다. 앱 APK와 해당 버전의 전체 수정 소스를 함께 제공합니다. GitHub가 자동 생성하는 `Source code` ZIP은 이 배포 저장소이고, 앱 전체 소스는 릴리스의 [별도 소스 ZIP](https://github.com/hejerd/bookoasis-audiobook-opds/releases/download/v0.5.2-b6/Readest-BookOasis-0.12.16-b6-source.zip)으로 제공합니다.
 
 [라이선스](LICENSE) · [변경 이력](CHANGELOG.md) · [개발·검증 자료](docs/DEVELOPMENT.ko.md)

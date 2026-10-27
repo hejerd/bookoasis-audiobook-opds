@@ -1,12 +1,14 @@
-audiobook_opds 0.4.2
+audiobook_opds 0.5.2
 Prepared for BookOasis_stable dashboard 3.0.2.
 Upstream inspected: https://github.com/leeyj/BookOasis_stable
 Commit: f4f80943bc46e8b673674b88bc40fc16bfafbd98
 License: GNU Affero General Public License version 3; see LICENSE.
 
-0.4.2 uses port 5941 as its new-install default and preserves saved ports.
-Book listings are acquisition feeds with artwork and the
-complete ordered track links, using one page-scoped metadata query.
-The BookOasis and Readest applications are not included or modified.
-The sample audio consists of original generated sine tones; no user audio
-or production credentials are distributed.
+Uses the official plugin background service and home widget interfaces.
+Default port 5941; saved ports are preserved.
+Supports account-scoped playback synchronization and a whole-book progress widget.
+No BookOasis core source or DB schema changes are included.
+Readest BookOasis b6 is a separate unofficial modified Android client,
+with corresponding source and upstream notices supplied in the release.
+The sample audio consists of original generated sine tones; no user audio,
+production databases, credentials or signing keys are distributed.

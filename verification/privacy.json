@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "files_scanned": 8284,
+  "findings": 0,
+  "includes": [
+    "repository",
+    "plugin ZIP and tests",
+    "APK unpacked entries",
+    "complete app source ZIP",
+    "release notes"
+  ],
+  "credential_url_examples_reviewed": "Only upstream and reserved-domain test fixtures",
+  "scope": "Known private identifiers, credential files and token/key patterns scanned; not a guarantee about all possible unknown personal text."
+}
